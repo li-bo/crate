@@ -440,18 +440,6 @@ public class TransportSQLActionClassLifecycleTest extends SQLTransportIntegratio
     }
 
     @Test
-    public void testPrefixedNumericLiterals() throws Exception {
-        execute("select - - - 10");
-        assertThat(response.rows()[0][0], is(-10L));
-
-        execute("select - + - 10");
-        assertThat(response.rows()[0][0], is(10L));
-
-        execute("select - (- 10 - + 10) * - (+ 10 + - 10)");
-        assertThat(response.rows()[0][0], is(0L));
-    }
-
-    @Test
     @UseJdbc(0) // set has no rowcount
     public void testSetMultipleStatement() throws Exception {
         SQLResponse response = execute(
